@@ -1,0 +1,12 @@
+.metadata
+bin/
+tmp/
+.settings/
+.loadpath
+*.launch
+.cproject
+.buildpath
+.target
+target/
+.classpath
+.project
