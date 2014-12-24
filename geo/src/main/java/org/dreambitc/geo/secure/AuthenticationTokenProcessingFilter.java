@@ -1,9 +1,6 @@
 package org.dreambitc.geo.secure;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -12,43 +9,54 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.WebAuthenticationDetails;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.GenericFilterBean;
-
 
 public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
 
-    public void doFilter(ServletRequest request, ServletResponse response,
-            FilterChain chain) throws IOException, ServletException {
-        @SuppressWarnings("unchecked")
-        Map<String, String[]> parms = request.getParameterMap();
+    private final UserDetailsService userService;
 
-        if (parms.containsKey("token")) {
-            String strToken = parms.get("token")[0]; // grab the first "token" parameter
-            System.out.println("Token: " + strToken);
+    public AuthenticationTokenProcessingFilter(UserDetailsService userService) {
+        this.userService = userService;
+    }
 
-            if (strToken.equals("test")) {
-                System.out.println("valid token found");
-                
-                List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-                authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
+            ServletException {
+        HttpServletRequest httpRequest = this.getAsHttpRequest(request);
 
-                UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken("test", "test");
-                token.setDetails(new WebAuthenticationDetails((HttpServletRequest) request));
-                Authentication authentication = new UsernamePasswordAuthenticationToken("test", "test", authorities); //this.authenticationProvider.authenticate(token);
-                
+        String authToken = this.extractAuthTokenFromRequest(httpRequest);
+        String userName = TokenUtils.getUserNameFromToken(authToken);
+
+        if (userName != null) {
+
+            UserDetails userDetails = this.userService.loadUserByUsername(userName);
+
+            if (TokenUtils.validateToken(authToken, userDetails)) {
+
+                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                        userDetails, null, userDetails.getAuthorities());
+                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpRequest));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-            }else{
-                System.out.println("invalid token");
             }
-        } else {
-            System.out.println("no token found");
         }
-        // continue thru the filter chain
+
         chain.doFilter(request, response);
+    }
+
+    private HttpServletRequest getAsHttpRequest(ServletRequest request) {
+        if (!(request instanceof HttpServletRequest)) {
+            throw new RuntimeException("Expecting an HTTP request");
+        }
+
+        return (HttpServletRequest) request;
+    }
+
+    private String extractAuthTokenFromRequest(HttpServletRequest httpRequest) {
+        String authToken = httpRequest.getHeader("X-Auth-Token");
+        return authToken;
     }
 }

@@ -1,17 +1,28 @@
 package org.dreambitc.geo.dao.user;
 
 import org.dreambitc.geo.entity.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class UserService {
-    private static Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     private UserDao userDao;
+
+    /**
+     * Creates new user.
+     * 
+     * @param name user name
+     * @param password user password
+     */
+    public User createUser(String name, String password) {
+        User user = new User();
+        user.setName(name);
+        user.setPassword(password);
+        return userDao.save(user);
+    }
 
     /**
      * 
@@ -29,5 +40,9 @@ public class UserService {
      */
     public User getUserById(Long id) {
         return userDao.find(id);
+    }
+
+    public UserDetails loadUserByUsername(String username) {
+        return userDao.loadUserByUsername(username);
     }
 }
