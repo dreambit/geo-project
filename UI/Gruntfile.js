@@ -262,7 +262,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= conf.app %>/styles/images',
           dest: '<%= conf.dist %>/css/images',
-          src: '*.{gif,png}'
+          src: '*.{gif,png,jpg}'
         }]
       },
       styles: {
