@@ -218,6 +218,21 @@
                             <goal>exec</goal>
                         </goals>
                     </execution>
+                    <!-- Perform Bower Install -->
+                    <execution>
+                        <id>bower-install</id>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <executable>bower</executable>
+                            <workingDirectory>../UI</workingDirectory>
+                            <arguments>
+                                <argument>install</argument>
+                            </arguments>
+                        </configuration>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
                 </executions>
             </plugin>
 
