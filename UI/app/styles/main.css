@@ -1,0 +1,178 @@
+body, html {
+  height: 100%;
+}
+
+.maincontainer {
+  widht: 100%;
+  height: 100%;
+}
+
+.welcome {
+  widht: 100%;
+  height: 100%;
+  background-image: url("../images/back.jpg");
+}
+
+.head_welcome {
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 80px;
+}
+
+.head_welcome_buttons {
+  padding-right: 20px;
+}
+
+.welcome_block {
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 100px;
+}
+
+.welcome_content {
+}
+
+.welcome_content-title {
+  color: white;
+  font-weight: bold;
+  font-size: 50px;
+  text-shadow: 2px 2px gray;
+  font-family: 'Lobster', cursive;
+}
+
+.welcome_content-text {
+  color: white;
+  text-shadow: 1px 1px gray;
+  font-family: 'Lobster', cursive;
+  font-size: 32px;
+  width: 80%;
+  padding-top: 20px;
+}
+
+.welcome_sidebar {
+  float: right;
+  display: block;
+}
+
+.welcome_register_form {
+}
+
+.welcome_register_form_tytle {
+  color: white;
+  text-shadow: 2px 2px gray;
+  font-family: 'Lobster', cursive;
+  font-size: 30px;
+}
+
+/*fix bootsrap row class*/
+.wrapper {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.welcome_head_logo_block {
+  padding-left: 1%;
+  margin-top: 16px;
+}
+
+.welcome_head_logo {
+  background-image: url("../images/logo.png");
+  display: inline-block;
+  height: 59px;
+  width: 64px;
+}
+
+.welcome_head_logo_text {
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  text-shadow: 2px 2px gray;
+  font-family: 'Lobster', cursive;
+}
+
+/*to center angular strap modal dialog*/
+.modal .modal-dialog {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  min-width: 450px;
+  max-width: 450px;
+  width: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.modal-footer {
+  padding-top: 0;
+}
+
+.badge.beta{
+  background-color: #d9534f;
+  text-shadow: none;
+  font-size: 20px;
+}
+
+.badge.yellow {
+  background-color: #f7ae21;
+  text-shadow: none;
+  font-size: 20px;
+}
+
+.badge.green {
+  background-color: #089413;
+  text-shadow: none;
+  font-size: 20px;
+}
+
+.dashboard {
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 18px;
+}
+
+.btn {
+  font-family: 'Lobster', cursive;
+}
+
+.btn.btn-big {
+  font-size: 20px;
+}
+
+.form-control {
+  font-family: 'Lobster', cursive;
+}
+
+.lobster {
+  font-family: 'Lobster', cursive;
+}
+
+.modal-title {
+  font-size: 24px;
+}
+
+.profile-foto {
+  width: 256px;
+  height: 278px;
+  background-image: url("../images/polaroid-256.png");
+}
+
+.user-logo-image {
+  position: relative;
+  left: 45px;
+  top: 55px;
+}
+.user-logo-name {
+  position: relative;
+  top: 82px;
+  text-align: center;
+}
+.progress {
+  height: 30px;
+}
+
+.progress-label {
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+  top: 6px;
+  cursor: pointer;
+}
