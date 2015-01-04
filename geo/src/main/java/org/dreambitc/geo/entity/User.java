@@ -2,25 +2,15 @@ package org.dreambitc.geo.entity;
 
 import java.util.Collection;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-@javax.persistence.Entity
 public class User implements Entity, UserDetails {
     private static final long serialVersionUID = -6598497629616410835L;
-
-    @Id
-    @GeneratedValue
     private long id;
 
-    @Column(unique = true, length = 16, nullable = false)
     private String name;
 
-    @Column(length = 80, nullable = false)
     private String password;
 
     public long getId() {

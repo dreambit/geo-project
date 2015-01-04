@@ -1,21 +1,21 @@
 package org.dreambitc.geo.transfer;
 
 public class UserTransfer {
-    private String username;
+    private String name;
 
     public UserTransfer() {
     }
 
     public UserTransfer(String username) {
-        this.username = username;
+        this.name = username;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.name = username;
     }
 
     public String getUsername() {
-        return username;
+        return name;
     }
 
 }

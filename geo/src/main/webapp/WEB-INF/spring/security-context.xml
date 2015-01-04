@@ -15,8 +15,9 @@
         entry-point-ref="unauthorizedEntryPoint" authentication-manager-ref="authenticationManager">
         <custom-filter ref="authenticationTokenProcessingFilter" position="FORM_LOGIN_FILTER" />
         <intercept-url pattern="/rest/user/authenticate*" access="permitAll" />
-        <intercept-url pattern="/rest/user/create*" access="isAuthenticated()" />
+        <intercept-url pattern="/rest/user/create*" access="permitAll" />
     </http>
+ 
     <beans:bean id="unauthorizedEntryPoint" class="org.dreambitc.geo.secure.UnauthorizedEntryPoint" />
 
     <beans:bean class="org.dreambitc.geo.secure.AuthenticationTokenProcessingFilter" id="authenticationTokenProcessingFilter">

@@ -6,11 +6,29 @@ import org.dreambitc.geo.entity.Entity;
 
 public interface Dao<T extends Entity, I> {
 
+    /**
+     * 
+     * @return
+     */
     List<T> findAll();
 
+    /**
+     * 
+     * @param id
+     * @return
+     */
     T find(I id);
 
-    T save(T newsEntry);
+    /**
+     * 
+     * @param user
+     * @return
+     */
+    T save(T user);
 
+    /**
+     * 
+     * @param id
+     */
     void delete(I id);
 }

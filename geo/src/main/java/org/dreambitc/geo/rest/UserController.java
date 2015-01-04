@@ -1,13 +1,5 @@
 package org.dreambitc.geo.rest;
 
-import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-
 import org.dreambitc.geo.dao.user.UserService;
 import org.dreambitc.geo.entity.User;
 import org.dreambitc.geo.secure.TokenUtils;
@@ -23,10 +15,15 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-@Service
-@Path("/user")
+@Controller
+@RequestMapping("/user")
 public class UserController {
     private static Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
@@ -43,10 +40,9 @@ public class UserController {
      * @param name user name to return
      * @return user details by user name
      */
-    @GET
-    @Path("{name}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public UserTransfer getUser(@PathParam("name") String name) {
+    @RequestMapping(value = "{name}", method = RequestMethod.GET)
+    @ResponseBody
+    public UserTransfer getUser(@PathVariable("name") String name) {
         User user = userService.getUserByName(name);
         return new UserTransfer(user.getName());
     }
@@ -58,10 +54,10 @@ public class UserController {
      * @param password user password
      * @return user creation status
      */
-    @POST
-    @Path("create")
-    @Produces(MediaType.APPLICATION_JSON)
-    public UserCreationStatusTransfer createUser(@FormParam("name") String name, @FormParam("password") String password) {
+    @RequestMapping(value = "create", method = RequestMethod.POST)
+    @ResponseBody
+    public UserCreationStatusTransfer createUser(@RequestParam(value = "name", required = true) String name,
+                                                 @RequestParam(value = "password", required = true) String password) {
 
         // if user already exists 
         if (userService.getUserByName(name) != null) {
@@ -89,10 +85,9 @@ public class UserController {
      *            the password of the user.
      * @return a transfer containing the authentication token.
      */
-    @Path("authenticate")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    public TokenTransfer authenticate(@FormParam("username") String username, @FormParam("password") String password) {
+    @RequestMapping(value = "authenticate", method = RequestMethod.POST)
+    @ResponseBody
+    public TokenTransfer authenticate(String username, String password) {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
         Authentication authentication = this.authManager.authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);

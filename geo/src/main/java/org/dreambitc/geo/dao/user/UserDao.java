@@ -6,6 +6,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UserDao extends Dao<User, Long>, UserDetailsService {
 
+    /**
+     * 
+     * @param name
+     * @return
+     */
     User findByName(String name);
 
 }

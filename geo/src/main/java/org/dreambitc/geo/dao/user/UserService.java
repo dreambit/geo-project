@@ -26,6 +26,7 @@ public class UserService {
 
     /**
      * 
+     * 
      * @param name
      * @return
      */
@@ -35,6 +36,7 @@ public class UserService {
 
     /**
      * 
+     * 
      * @param id
      * @return
      */
@@ -42,6 +44,12 @@ public class UserService {
         return userDao.find(id);
     }
 
+    /**
+     * 
+     * 
+     * @param username
+     * @return
+     */
     public UserDetails loadUserByUsername(String username) {
         return userDao.loadUserByUsername(username);
     }
