@@ -1,10 +1,12 @@
 'use strict';
 
-angular.module('engApp')
+angular.module('geoApp')
   .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    $scope.location = "continents";
+    $scope.quality = "Low";
+    $scope.showPopulation = "true";
+    $scope.tooltip = {
+  "title": "Hello Tooltip<br />This is a multiline message!",
+  "checked": true
+};
   });

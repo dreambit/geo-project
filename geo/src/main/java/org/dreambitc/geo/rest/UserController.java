@@ -43,6 +43,7 @@ public class UserController {
     @RequestMapping(value = "{name}", method = RequestMethod.GET)
     @ResponseBody
     public UserTransfer getUser(@PathVariable("name") String name) {
+        LOGGER.info("User was returned --------------------------------");
         User user = userService.getUserByName(name);
         return new UserTransfer(user.getName());
     }

@@ -1,5 +1,5 @@
 {
-  "name": "eng",
+  "name": "geo",
   "version": "1.0.0",
   "dependencies": {
     "jquery": "1.11.0",
@@ -16,7 +16,10 @@
     "components-font-awesome": "4.0.3",
     "jqgrid": "4.6.0",
     "ngInfiniteScroll": "1.0.0",
-    "angular-sanitize": "1.2.15"
+    "angular-sanitize": "1.2.15",
+    "bootstrap-additions": "~0.2.3",
+    "angular-bootstrap-select": "~0.0.5",
+    "d3": "~3.5.3"
   },
   "devDependencies": {
     "angular-mocks": "1.2.15",

@@ -1,5 +1,6 @@
 body, html {
   height: 100%;
+  padding-top: 30px;
 }
 
 .maincontainer {
@@ -92,13 +93,8 @@ body, html {
 
 /*to center angular strap modal dialog*/
 .modal .modal-dialog {
-  position: fixed;
-  top: 40%;
-  left: 50%;
   min-width: 450px;
   max-width: 450px;
-  width: 50%;
-  transform: translateX(-50%) translateY(-50%);
 }
 
 .modal-footer {
@@ -108,7 +104,7 @@ body, html {
 .badge.beta{
   background-color: #d9534f;
   text-shadow: none;
-  font-size: 20px;
+  font-size: 10px;
 }
 
 .badge.yellow {
@@ -124,21 +120,13 @@ body, html {
 }
 
 .dashboard {
-  padding-left: 20%;
-  padding-right: 20%;
+  padding-left: 5%;
+  padding-right: 5%;
   padding-top: 18px;
-}
-
-.btn {
-  font-family: 'Lobster', cursive;
 }
 
 .btn.btn-big {
   font-size: 20px;
-}
-
-.form-control {
-  font-family: 'Lobster', cursive;
 }
 
 .lobster {
@@ -176,3 +164,48 @@ body, html {
   top: 6px;
   cursor: pointer;
 }
+
+/*-----*/
+
+.map {
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+
+/* Login, Register */
+.login-body { 
+ background: url('images/bg_suburb.jpg') no-repeat center center fixed; 
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
+ position: absolute;
+ height: 100%;
+ top: 0px;
+ left: 0px;
+ width: 100%;
+}
+
+.panel-default {
+  opacity: 0.9;
+  margin-top: 20px;
+}
+
+.form-group.last {
+  margin-bottom: 0px;
+}
+
+.login-logo {
+  text-shadow: 2px 2px gray;
+  font-size:60px;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+
+.login-logo-beta {
+  text-align: center;
+  font-size:30px;
+}
+/*----*/

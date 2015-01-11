@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('engApp', [
+angular.module('geoApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
   'pascalprecht.translate',
   'ngAnimate',
   'ui-rangeSlider',
-  'ui.bootstrap',
-  'mgcrea.ngStrap',
-  'infinite-scroll'
+  'mgcrea.ngStrap.aside',
+  'ui.bootstrap.popover',
+  'ui.bootstrap.tpls'
 ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -25,6 +25,12 @@ angular.module('engApp', [
       })
       .when('/dashboard/dictionary', {
         templateUrl: 'views/dashboard-dictionary.html'
+      })
+      .when('/login', {
+        templateUrl: 'views/login.html'
+      })
+      .when('/register', {
+        templateUrl: 'views/register.html'
       })
       .otherwise({
         redirectTo: '/'
