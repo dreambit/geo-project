@@ -1,24 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!-- (c) ammap.com | SVG map of Mexico -->
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="800px" height="600px">
+<svg id="svg-map" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
 	<defs>
-		<style type="text/css">
-			.land
-			{
-				fill: #787f6a;
-				fill-opacity: 0.8;
-				stroke:white;
-				stroke-opacity: 1;
-				stroke-width:0.5;
-			}
-                        .land:hover {
-                             fill: #896d3d;
-                        }
-		</style>
-
-		<!-- All areas are listed in the line below. You can use this list in your script. -->
-		<!--{id:"MX-AGU"},{id:"MX-BCN"},{id:"MX-BCS"},{id:"MX-CAM"},{id:"MX-CHP"},{id:"MX-CHH"},{id:"MX-COA"},{id:"MX-OCL"},{id:"MX-DIF"},{id:"MX-DUR"},{id:"MX-GUA"},{id:"MX-GRO"},{id:"MX-HID"},{id:"MX-JAL"},{id:"MX-MEX"},{id:"MX-MIC"},{id:"MX-MOR"},{id:"MX-NAY"},{id:"MX-NLE"},{id:"MX-OAX"},{id:"MX-PUE"},{id:"MX-QUE"},{id:"MX-ROO"},{id:"MX-SLP"},{id:"MX-SIN"},{id:"MX-SON"},{id:"MX-TAB"},{id:"MX-TAM"},{id:"MX-TLA"},{id:"MX-VER"},{id:"MX-YUC"},{id:"MX-ZAC"}-->
-
 	</defs>
 	<g>
 		<path id="MX-AGU" title="Aguascalientes" class="land" d="M390.24,367.07L387.9,364.81L387.83,363.6L389.07,360.73L392.4,356.14L393.33,352.9L394.4,352.17L396.19,351.79L399.66,349.82L400.87,348.9L401.26,347.64L401.99,347.47L402.76,348.86L404.09,350.2L408.53,352.83L409.12,355.27L410.26,357.31L410.26,357.31L410.52,357.9L410.28,359.5L412.24,361.64L407.96,363.61L405.41,367.16L404.69,367.66L401.67,368.7L400.41,368.76L398.24,367.74L396.5,366.33L392.29,365.95z"/>
