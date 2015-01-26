@@ -1,0 +1,29 @@
+<div class="aside" tabindex="-1" role="dialog">
+  <div class="aside-dialog">
+    <div class="aside-content">
+      <div class="aside-header" ng-show="title">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="aside-title" ng-bind-html="title"></h4>
+      </div>
+      <div class="aside-body" ng-show="content">
+        <div class="row">
+          <div class="col-md-6" style="line-height: 30px;">
+            <label>Show population</label>
+          </div>
+          <div class="col-md-4 col-md-offset-1">
+            <toggle-switch model="showPopulation.value"><toggle-switch>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6" style="line-height: 30px;">
+            <label>High Detailed</label>
+          </div>
+          <div class="col-md-4 col-md-offset-1">
+            <toggle-switch model="quality.value"><toggle-switch>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

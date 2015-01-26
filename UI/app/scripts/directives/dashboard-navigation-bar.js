@@ -8,13 +8,8 @@ angular.module('geoApp')
     scope: {
       active: '@',
       location: '=',
-      quality: '='
-    },
-    link: function ($scope) {
-      $scope.aside = {
-        "title": "Settings",
-        "content": "Quality"
-      };
+      quality: '=',
+      showPopulation: '='
     }
   };
 });

@@ -9,9 +9,12 @@ angular.module('geoApp', [
   'ui-rangeSlider',
   'mgcrea.ngStrap.aside',
   'ui.bootstrap.popover',
-  'ui.bootstrap.tpls'
+  'ui.bootstrap.tpls',
+  'toggle-switch',
+  'ngCookies',
+  'ui.checkbox'
 ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -27,7 +30,8 @@ angular.module('geoApp', [
         templateUrl: 'views/dashboard-dictionary.html'
       })
       .when('/login', {
-        templateUrl: 'views/login.html'
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
       })
       .when('/register', {
         templateUrl: 'views/register.html'
@@ -35,4 +39,38 @@ angular.module('geoApp', [
       .otherwise({
         redirectTo: '/'
       });
+
+    // login interceptor
+    $httpProvider.interceptors.push(function ($q, $rootScope) {
+      var isRestCall,
+          authToken;
+      return {
+        'request': function(config) {
+          isRestCall = config.url.indexOf('rest') === 0;
+          if (isRestCall && angular.isDefined($rootScope.authToken)) {
+            authToken = $rootScope.authToken;
+            config.headers['X-Auth-Token'] = authToken;
+          }
+          return config || $q.when(config);
+        }
+      };
+    });
+
+  })
+  .run(function ($rootScope, $location, $cookieStore, UserService) {
+    var authToken;
+
+    $rootScope.logout = function () {
+      delete $rootScope.user;
+      $cookieStore.remove('authToken');
+    };
+
+    authToken = $cookieStore.get('authToken');
+
+    if (authToken !== undefined) {
+      $rootScope.authToken = authToken;
+      UserService.get(function(user) {
+        $rootScope.user = user;
+      });
+    }
   });

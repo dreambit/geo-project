@@ -11,12 +11,12 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li ng-class="{'active' : active == 'world'}" ng-click="location = 'continents'"><a href="">World</a></li>
+        <li ng-class="{'active' : active == 'world'}"><a href="#/">World</a></li>
         <li ng-class="{'active' : active == 'dictionary'}"><a href="#/dashboard/dictionary">Dictionary</a></li>
         <li ng-class="{'active' : active == 'jungle'}"><a href="#/dashboard/jungle">Jungle</a></li>
         <li><a href="#">The Game</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+          <a href="" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="#">
                 <input type="checkbox">
@@ -31,11 +31,19 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a href="#/login">Login</a>
+        <li class="dropdown" ng-show="$root.user">
+          <a href="" class="dropdown-toggle" data-toggle="dropdown">{{$root.user.username}} <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="" ng-click="$root.logout()">Logout</a></li>
+          </ul>
         </li>
-        <li>
-          <a href="" class="glyphicon glyphicon-cog" style="font-size: 20px" bs-aside="aside" data-container="body"></a>
+        <li ng-hide='$root.user'>
+          <a href="#/login">Login</a>
         </li>
       </ul>
     </div>

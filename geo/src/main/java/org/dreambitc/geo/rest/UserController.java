@@ -35,6 +35,24 @@ public class UserController {
     private AuthenticationManager authManager;
 
     /**
+     * Retrieves the currently logged in user.
+     * 
+     * @return A transfer containing the username and the roles.
+     */
+    @RequestMapping(method = RequestMethod.GET)
+    @ResponseBody
+    public UserTransfer getUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+        if (principal instanceof String && ((String) principal).equals("anonymousUser")) {
+            
+        }
+        UserDetails userDetails = (UserDetails) principal;
+
+        return new UserTransfer(userDetails.getUsername());
+    }
+
+    /**
      * Returns user details by user name.
      * 
      * @param name user name to return
@@ -43,7 +61,6 @@ public class UserController {
     @RequestMapping(value = "{name}", method = RequestMethod.GET)
     @ResponseBody
     public UserTransfer getUser(@PathVariable("name") String name) {
-        LOGGER.info("User was returned --------------------------------");
         User user = userService.getUserByName(name);
         return new UserTransfer(user.getName());
     }
@@ -88,7 +105,8 @@ public class UserController {
      */
     @RequestMapping(value = "authenticate", method = RequestMethod.POST)
     @ResponseBody
-    public TokenTransfer authenticate(String username, String password) {
+    public TokenTransfer authenticate(@RequestParam(value = "email", required = true) String username,
+                                      @RequestParam(value = "password", required = true) String password) {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
         Authentication authentication = this.authManager.authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
