@@ -33,7 +33,7 @@ public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
 
         if (userName != null) {
 
-            UserDetails userDetails = userService.loadUserByUsername(userName);
+            UserDetails userDetails = this.userService.loadUserByUsername(userName);
 
             if (TokenUtils.validateToken(authToken, userDetails)) {
 
